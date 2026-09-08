@@ -18,16 +18,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ProblemDetail handleTypeMismatch(MethodArgumentTypeMismatchException ex, HttpServletRequest request) {
-        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problem.setTitle("Tipo de parâmetro inválido");
-        problem.setDetail(String.format(
-                "O parâmetro '%s' deve ser do tipo '%s'. Valor recebido: '%s'",
-                ex.getName(),
-                ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "desconhecido",
-                ex.getValue()
-        ));
-        problem.setInstance(URI.create(request.getRequestURI()));
-        return problem;
+        return buildProblem(
+                HttpStatus.BAD_REQUEST,
+                "Tipo de parâmetro inválido",
+                String.format(
+                        "O parâmetro '%s' deve ser do tipo '%s'. Valor recebido: '%s'",
+                        ex.getName(),
+                        ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "desconhecido",
+                        ex.getValue()
+                ),
+                request.getRequestURI()
+        );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
