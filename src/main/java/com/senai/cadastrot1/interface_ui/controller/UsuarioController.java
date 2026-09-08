@@ -1,10 +1,8 @@
-package com.senai.cadastrot1.interface_ui;
+package com.senai.cadastrot1.interface_ui.controller;
 
 import com.senai.cadastrot1.application.dto.UsuarioRequestDTO;
 import com.senai.cadastrot1.application.dto.UsuarioResponseDTO;
 import com.senai.cadastrot1.application.service.UsuarioService;
-import com.senai.cadastrot1.domain.entity.Usuario;
-import com.senai.cadastrot1.domain.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
