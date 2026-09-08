@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public Usuario atualizarUsuario(@PathVariable UUID id,
+    public UsuarioResponseDTO atualizarUsuario(@PathVariable UUID id,
                                     @Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         return usuarioService.update(usuarioRequestDTO,id);
     }
