@@ -1,6 +1,7 @@
 package com.senai.cadastrot1.interface_ui;
 
 import com.senai.cadastrot1.application.dto.UsuarioRequestDTO;
+import com.senai.cadastrot1.application.dto.UsuarioResponseDTO;
 import com.senai.cadastrot1.application.service.UsuarioService;
 import com.senai.cadastrot1.domain.entity.Usuario;
 import com.senai.cadastrot1.domain.repository.UsuarioRepository;
@@ -20,17 +21,17 @@ public class UsuarioController {
     final UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> listarTodosUsuarios() {
+    public List<UsuarioResponseDTO> listarTodosUsuarios() {
         return usuarioService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarUsuarioPorId(@PathVariable UUID id) {
+    public UsuarioResponseDTO buscarUsuarioPorId(@PathVariable UUID id) {
        return usuarioService.findById(id);
     }
 
     @PostMapping
-    public Usuario cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+    public UsuarioResponseDTO cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         return usuarioService.save(usuarioRequestDTO);
     }
 
